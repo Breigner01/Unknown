@@ -42,7 +42,10 @@ const handleSubmit = (event) => {
             </Wrapper>
             <div>
                 {!passwordData ? <div></div>:
-                <Info>Amount of time to hack your password:{passwordData.time}</Info>
+                <Info>
+                <div>Password Strength:{passwordData.strength}</div>
+                <div>Amount of time to hack your password:{passwordData.time}</div>
+                </Info>
                 }
             </div>
         </>
