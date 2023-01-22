@@ -1,13 +1,29 @@
 import styled from "styled-components";
 import {useState} from "react";
 const CheckPassword = () => {
+
+const [passwordData, setPasswordData] = useState("");
 const handleSubmit = (event) => {
     event.preventDefault()
     const data = {
         password: password,
     }
-    console.log(data)
+
+        fetch("http://localhost:5000/checkPassword", {mode: 'cors', body: JSON.stringify(data), method: "POST"})
+            .then((res) => {
+                res.json().then((data) => {
+                    setPasswordData(data);
+                    console.log(data.time);
+                    console.log(data.strength)
+                })
+            })
+
+        .catch(function (error) {
+            console.log(error);}
+        )
+
 }
+
     const [password, setPassword] = useState("");
 
     const handleChange = (event) => {

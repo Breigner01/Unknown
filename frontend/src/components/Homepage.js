@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Slider from 'react-slider-simple';
 import axios from "axios";
 import * as PropTypes from "prop-types";
@@ -16,6 +16,7 @@ const Homepage = () => {
     const [numbers, setNumbers] = useState(false);
     const [specialChars, setSpecialChars] = useState(false);
     const [ambiguousChars, setAmbiguousChars] = useState(false);
+    const [password, setPassword] = useState(null);
 
     const handleChange = (newValue) => {
         setValue(Math.round(newValue))
@@ -29,7 +30,7 @@ const Homepage = () => {
         setValue(value - 1)
     }
 
-    const handleSubmit = (event) => {
+     const handleSubmit = (event) => {
         event.preventDefault()
         const data = {
             value: value,
@@ -40,39 +41,41 @@ const Homepage = () => {
             ambiguousChars: ambiguousChars
         }
         console.log(data)
-        fetch("http://localhost:5000/genPassword", {mode:'cors', body: JSON.stringify(data), method: "POST"})
-        .then((res) => {res.json().then((data) => {console.log(data)})})
+        fetch("http://localhost:5000/genPassword", {mode: 'cors', body: JSON.stringify(data), method: "POST"})
+            .then((res) => {
+                res.json().then((data) => {
+                    setPassword(data);
+                    console.log(data.password);
+                    console.log(data.time);
+                    console.log(data.strength)
+                })
+            })
 
         .catch(function (error) {
-            console.log(error)
-                if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);}})
+            console.log(error);}
+        )
 
-  }
-
+}
     return (
+        <>
         <Wrapper>
             <Info>
                 Instantly generate a secure random password with our tool
             </Info>
-            <div>
+            <Title>
                 Customize your password
-            </div>
-            <Length>
+            </Title>
+            <PLength>
                 Password Length:
-                <input
+                <Value
                 value={value} />
-                <button
+                <Btn
                 onClick={handleIncrease}> +
-                </button>
-                <button
+                </Btn>
+                <Btn
                 onClick={handleDecrease}> -
-                </button>
-            </Length>
+                </Btn>
+            </PLength>
             <StyledSlider
                 min={0}
                 max={100}
@@ -127,11 +130,26 @@ const Homepage = () => {
             Ambiguous
         </label>
         <label>
-            <button type="submit" value="Submit" onClick={handleSubmit}>Generate Password</button>
+            <Button type="submit" value="Submit" onClick={handleSubmit}>Generate Password</Button>
         </label>
         </form>
         </CheckBoxes>
         </Wrapper>
+        <div>
+            {!password ? <div></div>
+            :
+            <Details>
+                <h2>Password Details</h2>
+                <div>{password.password}</div>
+                <div>{password.strength}</div>
+                <div>{password.time}</div>
+            </Details>
+            }
+
+
+
+        </div>
+        </>
     )
 }
 
@@ -146,6 +164,8 @@ align-items: center;
 background-color:#121212;
 padding:15px;
 color:#a4f644;
+margin-top:10px;
+width:99%;
 
 `
 const Info = styled.div`
@@ -171,5 +191,52 @@ width: 500px;
 height: 50px;
 background-color: #121212;
 `
+const Button = styled.button`
+font-family: 'Share Tech Mono', monospace;
+font-weight: bolder;
+color:black;
+background-color: #a4f644;
+border:none;
+border-radius: 10px;
+font-size: 24px;
+padding:20px 40px;
+box-shadow: 2px 9px 5px #121212;
+margin:25px;
+`
+const PLength = styled.div`
+font-family: 'Share Tech Mono', monospace;
+color:#a4f644;
+font-size: 20px;
+`
+const Btn = styled.button`
+font-family: 'Share Tech Mono', monospace;
+font-weight: bolder;
+color:black;
+background-color: #a4f644;
+border:none;
+border-radius: 50%;
+font-size: 24px;
+margin:5px;
+`
 
+const Value = styled.input`
+background-color: black;
+color:#a4f644;
+margin:15px;
+font-family: 'Share Tech Mono', monospace;
+font-size: 24px;
+width:100px;
+`
+const Title = styled.div`
+text-decoration: underline;
+font-size: 28px;
+margin-top:25px;
+`
+const Details = styled.div`
+background-color: black;
+color:#a4f644;
+margin:15px;
+font-family: 'Share Tech Mono', monospace;
+font-size: 24px;
+`
 export default Homepage;

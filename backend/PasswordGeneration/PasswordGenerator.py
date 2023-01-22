@@ -1,10 +1,8 @@
 from random import randint
-
 from PasswordSpecifications import PasswordSpecifications
 
 
 class PasswordGenerator:
-
     lowercase: str = "abcdefghijklmnopqrstuvwxyz"
     uppercase: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     numbers: str = "0123456789"
@@ -33,7 +31,6 @@ class PasswordGenerator:
 
         return password
 
-
     @staticmethod
     def __generate_password(password_specifications: PasswordSpecifications, included_chars: list[str]) -> str:
 
@@ -45,7 +42,6 @@ class PasswordGenerator:
             password += included_chars[char_category][char_index]
 
         return password
-
 
     def __check_password(self, password_specifications: PasswordSpecifications, password: str) -> bool:
 
@@ -63,4 +59,3 @@ class PasswordGenerator:
                 return False
 
         return True
-
