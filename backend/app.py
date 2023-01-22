@@ -53,7 +53,7 @@ def test():
 
 @app.route("/sms", methods=['POST', 'GET'])
 def incoming_sms():
-    print("hello")
+    app.logger.info("hello")
     t = Sms_api.Sms()
     body = request.values.get('Body', None)
     resp = MessagingResponse()
@@ -71,7 +71,7 @@ def incoming_sms():
         t.message("Invalid Command")
     resp.message(t.message)
     print("goodbye")
-    print(resp.message)
+    app.logger.info(resp.message)
     return str(resp)
 
 
