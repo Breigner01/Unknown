@@ -41,7 +41,7 @@ const Homepage = () => {
             ambiguousChars: ambiguousChars
         }
         console.log(data)
-        fetch("http://localhost:5000/genPassword", {mode: 'cors', body: JSON.stringify(data), method: "POST"})
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/genPassword`, {mode: 'cors', body: JSON.stringify(data), method: "POST"})
             .then((res) => {
                 res.json().then((data) => {
                     setPassword(data);
