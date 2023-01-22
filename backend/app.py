@@ -29,7 +29,7 @@ def generate_password():
                                          symbols=bool(data["specialChars"]), min_numbers=data.get('min_numbers', 0),
                                          min_symbols=data.get("min_symbols", 0), ambiguous=bool(data["ambiguousChars"]))
     print(requestData.ambiguous)
-    return jsonify(message="Donezo")
+    return jsonify({"password":"HelloWorld"})
 
 
 @app.route("/test", methods=['POST'])

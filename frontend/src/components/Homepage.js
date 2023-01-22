@@ -41,12 +41,7 @@ const Homepage = () => {
         }
         console.log(data)
         fetch("http://localhost:5000/genPassword", {mode:'cors', body: JSON.stringify(data), method: "POST"})
-        // axios({
-        //     method: "post",
-        //     url: "http://localhost:5000/",
-        //     data: data
-        // }).then((res) => {
-        //     console.log(res)
+        .then((res) => {res.json().then((data) => {console.log(data)})})
 
         .catch(function (error) {
             console.log(error)
