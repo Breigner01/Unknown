@@ -27,9 +27,9 @@ def check_password():
 @app.route("/genPassword", methods=['POST'])
 def generate_password():
     data = json.loads(request.data)
-    if data['specialChars']:
+    if data.get('specialChars'):
         data['min_symbols'] = 1
-    if data['numbers']:
+    if data.get('numbers'):
         data['min_numbers'] = 1
 
     requestData = PasswordSpecifications(length=int(data["value"]), lowercase=bool(data["lowercase"]),
