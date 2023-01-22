@@ -1,20 +1,21 @@
 SECONDSINMIN = 60
 SECONDSINHOUR = SECONDSINMIN * 60
 SECONDSINDAY = SECONDSINHOUR * 24 # 86400
+SECONDSINMONTH = 2592000
 SECONDSINYEAR = SECONDSINDAY * 365 # 31536000
 
 class CrackTime:
     password = None
-    attempts_per_second = 100000
-    allowed_characters = 95  # 26 lower, 26 upper, 10 digit, 33 special
+    attempts_per_second = 37085000000   # Follows RTX2080  http://ww16.hivesystem.io/blog/are-your-passwords-in-the-green?sub1=20230122-1210-36bf-8f71-49af03a1c99a
+    # allowed_characters = 88  # 26 lower, 26 upper, 10 digit, 26 special
+    allowed_characters = 62
     sample_space = None
     time_to_crack = 0
 
-    def __init__(self, password, allowed_characters=95, attempts_per_second=100000, max_length=150):
+    def __init__(self, password):
         self.password = password
-        self.attempts_per_second = attempts_per_second
-        self.allowed_characters = allowed_characters
         self.sample_space = self.allowed_characters ** len(self.password)
+        print("Sample space = ", self.sample_space)
 
     def recursive(self, time_in_years):
         # Returns the number of seconds it would take to crack the password
@@ -39,14 +40,15 @@ class CrackTime:
 
 
 
-pw = CrackTime("1234567")
+pw = CrackTime("12345678910")
 # print(pw.sample_space)
-# print(pw.generate_time(), "seconds")
-# print(pw.generate_time() / SECONDSINMIN, "minutes")
-# print(pw.generate_time() / SECONDSINHOUR, "hours")
-# print(pw.generate_time() / SECONDSINDAY, "days")
-# print(pw.generate_time() / SECONDSINYEAR, "years")
+print(pw.generate_time(), "seconds")
+print(pw.generate_time() / SECONDSINMIN, "minutes")
+print(pw.generate_time() / SECONDSINHOUR, "hours")
+print(pw.generate_time() / SECONDSINDAY, "days")
+print(pw.generate_time() / SECONDSINMONTH, "months")
+print(pw.generate_time() / SECONDSINYEAR, "years")
 pw.recursive(pw.generate_time() / SECONDSINYEAR)
-# print(pw.time_to_crack / SECONDSINYEAR)
-
 print(pw.time_to_crack / SECONDSINYEAR)
+
+# print(pw.time_to_crack / SECONDSINYEAR)
