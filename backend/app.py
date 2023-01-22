@@ -56,6 +56,7 @@ def incoming_sms():
     t = Sms_api.Sms()
     body = request.values.get('Body', None)
     resp = MessagingResponse()
+
     if "checkPassword" in body:
         body = body.replace("checkPassword", "")
         if "-m" in body:
@@ -69,7 +70,7 @@ def incoming_sms():
     else:
         t.message("Invalid Command")
     resp.message(t.message)
-    print(resp.to)
+    print(str(resp.to_xml()))
     return str(resp)
 
 
