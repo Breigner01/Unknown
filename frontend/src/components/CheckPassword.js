@@ -40,6 +40,11 @@ const handleSubmit = (event) => {
                     <Button type="submit" value="submit" onClick={handleSubmit}>Check Password</Button>
                 </form>
             </Wrapper>
+            <div>
+                {!passwordData ? <div></div>:
+                <div>Amount of time to hack your password:{passwordData.time}</div>
+                }
+            </div>
         </>
     )
 }
@@ -59,6 +64,7 @@ width:450px;
 border-radius: 15px;
 background-color: #181818;
 color: #a4f644;
+font-size: 24px;
 border:none;
 border:solid 1px #a4f644;
 box-shadow: 2px 9px 5px #181818;

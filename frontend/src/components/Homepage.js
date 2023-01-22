@@ -88,7 +88,8 @@ const Homepage = () => {
             />
             <p>Value: {value}</p>
         <CheckBoxes>
-            <form>
+        <h3>Please choose at least one of the following:</h3>
+        <form>
         <label>
         <input
             type="checkbox"
@@ -140,9 +141,9 @@ const Homepage = () => {
             :
             <Details>
                 <h2>Password Details</h2>
-                <div>{password.password}</div>
-                <div>{password.strength}</div>
-                <div>{password.time}</div>
+                <div>Password Generated:{password.password}</div>
+                <div>Password Strength:{password.strength}</div>
+                <div>Time to hack this Password:{password.time}</div>
             </Details>
             }
 
