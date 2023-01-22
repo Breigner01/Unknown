@@ -2,14 +2,15 @@ import math
 
 SECONDSINMIN = 60
 SECONDSINHOUR = SECONDSINMIN * 60
-SECONDSINDAY = SECONDSINHOUR * 24 # 86400
+SECONDSINDAY = SECONDSINHOUR * 24  # 86400
 SECONDSINWEEK = SECONDSINDAY * 7
 SECONDSINMONTH = 2592000
-SECONDSINYEAR = SECONDSINDAY * 365 # 31536000
+SECONDSINYEAR = SECONDSINDAY * 365  # 31536000
+
 
 class CrackTime:
     password = None
-    attempts_per_second = 37085000000   # Follows RTX2080  http://ww16.hivesystem.io/blog/are-your-passwords-in-the-green?sub1=20230122-1210-36bf-8f71-49af03a1c99a
+    attempts_per_second = 37085000000  # Follows RTX2080  http://ww16.hivesystem.io/blog/are-your-passwords-in-the-green?sub1=20230122-1210-36bf-8f71-49af03a1c99a
     # allowed_characters = 88  # 26 lower, 26 upper, 10 digit, 26 special
     allowed_characters = 62
     sample_space = None
@@ -64,14 +65,15 @@ class CrackTime:
                 return self.with_moores(self.generate_time() / SECONDSINYEAR)
         return time
 
+
 def get_strength(result):
-    if result == "instant":
+    if "instant" in result:
         return "horrible"
-    if result.contains("seconds"):
+    if "seconds" in result:
         return "bad"
-    if result.contains("hours") or result.contains("days") or result.contains("months"):
+    if "hours" in result or "days" in result or "months" in result:
         return "weak"
-    if result.contains("years"):
+    if "years" in result:
         year = int(result.replace(" years", ""))
         if year < 2000:
             return "mediocre"
