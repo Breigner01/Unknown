@@ -1,7 +1,8 @@
 import os
 from dotenv import load_dotenv
 from twilio.rest import Client
-from PasswordSpecifications.PasswordSpecifications import PasswordSpecifications
+from PasswordSpecifications import PasswordSpecifications
+from CrackTime import CrackTime
 load_dotenv()
 
 
@@ -48,4 +49,6 @@ class Sms:
         # )
 
     def check_password_sms(self, message):
-        pass
+        pw = CrackTime(message)
+        return pw.show_results()
+

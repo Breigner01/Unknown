@@ -56,9 +56,10 @@ class CrackTime:
             time_to_crack += self.sample_space / self.attempts_per_second
             return self.with_moores(self.generate_time() / SECONDSINYEAR, time_to_crack)
 
+    def show_results(self):
+        pw = CrackTime("Alexander101")
+        time = pw.return_whole()
+        if "years" in time:
+            return pw.with_moores(pw.generate_time() / SECONDSINYEAR)
 
-pw = CrackTime("Alexander101")
-time = pw.return_whole()
-print(time)
-if "years" in time:
-    print(pw.with_moores(pw.generate_time() / SECONDSINYEAR))
+        return time
