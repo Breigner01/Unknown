@@ -11,8 +11,8 @@ SECONDSINYEAR = SECONDSINDAY * 365  # 31536000
 class CrackTime:
     password = None
     attempts_per_second = 37085000000  # Follows RTX2080  http://ww16.hivesystem.io/blog/are-your-passwords-in-the-green?sub1=20230122-1210-36bf-8f71-49af03a1c99a
-    allowed_characters = 88  # 26 lower, 26 upper, 10 digit, 26 special
-    # allowed_characters = 62 # 26 lower, 26 upper, 10 digit
+    # allowed_characters = 88  # 26 lower, 26 upper, 10 digit, 26 special
+    allowed_characters = 62 # 26 lower, 26 upper, 10 digit
     sample_space = None
     use_moores = False
 
@@ -27,21 +27,21 @@ class CrackTime:
     def without_moores(self):
         if self.generate_time() / SECONDSINYEAR > 1:
             if (math.floor(self.generate_time() / SECONDSINYEAR)) >2000:
-                return f"2000+ years"
+                return f"2000+ year(s)"
             else:
-                return str(math.floor(self.generate_time() / SECONDSINYEAR)) + " years"
+                return str(math.floor(self.generate_time() / SECONDSINYEAR)) + " year(s)"
         elif self.generate_time() / SECONDSINMONTH > 1:
-            return str(math.floor(self.generate_time() / SECONDSINMONTH)) + " months"
+            return str(math.floor(self.generate_time() / SECONDSINMONTH)) + " month(s)"
         elif self.generate_time() / SECONDSINWEEK > 1:
-            return str(math.floor(self.generate_time() / SECONDSINWEEK)) + " weeks"
+            return str(math.floor(self.generate_time() / SECONDSINWEEK)) + " week(s)"
         elif self.generate_time() / SECONDSINDAY > 1:
-            return str(math.floor(self.generate_time() / SECONDSINDAY)) + " days"
+            return str(math.floor(self.generate_time() / SECONDSINDAY)) + " day(s)"
         elif self.generate_time() / SECONDSINHOUR > 1:
-            return str(math.floor(self.generate_time() / SECONDSINHOUR)) + " hours"
+            return str(math.floor(self.generate_time() / SECONDSINHOUR)) + " hour(s)"
         elif self.generate_time() / SECONDSINMIN > 1:
-            return str(math.floor(self.generate_time() / SECONDSINMIN)) + " minutes"
+            return str(math.floor(self.generate_time() / SECONDSINMIN)) + " minute(s)"
         elif self.generate_time() > 1:
-            return str(math.floor(self.generate_time())) + " seconds"
+            return str(math.floor(self.generate_time())) + " second(s)"
         else:
             return "instant"
 
@@ -50,7 +50,7 @@ class CrackTime:
 
         if time_in_years < 2:
             time_to_crack += time_in_years * SECONDSINYEAR
-            return str(math.floor(time_to_crack / SECONDSINYEAR)) + " years"
+            return str(math.floor(time_to_crack / SECONDSINYEAR)) + " year(s)"
         else:
             # Remove the sample space completed in the two years.
             sample_space_completed = self.attempts_per_second * SECONDSINYEAR * 2
@@ -72,12 +72,12 @@ class CrackTime:
 def get_strength(result):
     if "instant" in result:
         return "horrible"
-    if "seconds" in result:
+    if "second(s)" in result:
         return "bad"
-    if "hours" in result or "days" in result or "months" in result:
+    if "hour(s)" in result or "day(s)" in result or "month(s)" in result:
         return "weak"
-    if "years" in result:
-        year = int(result.replace("+ years", ""))
+    if "year(s)" in result:
+        year = int(result.replace("+ year(s)", ""))
         if year < 2000:
             return "mediocre"
         else:
