@@ -65,8 +65,8 @@ def incoming_sms():
         else:
             t.message = t.check_password_sms(body)
     elif "generatePassword" in body:
-        body = body.replace("generatePassword", "")
-        t.generate_password_sms(body)
+        body = body.replace("generatePassword ", "")
+        t.message = t.generate_password_sms(body)
     else:
         t.message = "Invalid Command"
     resp.message(t.message)
