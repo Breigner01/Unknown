@@ -53,9 +53,9 @@ def test():
 
 @app.route("/sms", methods=['POST', 'GET'])
 def incoming_sms():
+    print("hello")
     t = Sms_api.Sms()
     body = request.values.get('Body', None)
-    print("hello")
     resp = MessagingResponse()
     if "checkPassword" in body:
         body = body.replace("checkPassword", "")
