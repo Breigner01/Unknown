@@ -76,9 +76,7 @@ def get_strength(result):
         return "bad"
     if "hour(s)" in result or "day(s)" in result or "month(s)" in result:
         return "weak"
+    if "+ year(s)" in result:
+        return "strong"
     if "year(s)" in result:
-        year = int(result.replace("+ year(s)", ""))
-        if year < 2000:
-            return "mediocre"
-        else:
-            return "strong"
+        return "mediocre"
