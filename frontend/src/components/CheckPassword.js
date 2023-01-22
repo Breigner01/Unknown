@@ -42,7 +42,7 @@ const handleSubmit = (event) => {
             </Wrapper>
             <div>
                 {!passwordData ? <div></div>:
-                <div>Amount of time to hack your password:{passwordData.time}</div>
+                <Info>Amount of time to hack your password:{passwordData.time}</Info>
                 }
             </div>
         </>
@@ -81,5 +81,10 @@ font-size: 24px;
 padding:20px 40px;
 box-shadow: 2px 9px 5px #121212;
 margin:25px;
+`
+const Info = styled.div`
+font-family: 'Share Tech Mono', monospace;
+color: #a4f644;
+font-size: 24px;
 `
 

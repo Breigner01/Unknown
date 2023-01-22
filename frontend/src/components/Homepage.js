@@ -88,7 +88,7 @@ const Homepage = () => {
             />
             <p>Value: {value}</p>
         <CheckBoxes>
-        <h3>Please choose at least one of the following:</h3>
+        <H3>Please choose at least one of the following:</H3>
         <form>
         <label>
         <input
@@ -235,6 +235,12 @@ margin-top:25px;
 `
 const Details = styled.div`
 background-color: black;
+color:#a4f644;
+margin:15px;
+font-family: 'Share Tech Mono', monospace;
+font-size: 24px;
+`
+const H3 = styled.h3`
 color:#a4f644;
 margin:15px;
 font-family: 'Share Tech Mono', monospace;
