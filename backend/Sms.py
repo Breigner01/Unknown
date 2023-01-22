@@ -9,24 +9,35 @@ load_dotenv()
 
 
 def parse_message(message):
-    p = PasswordSpecifications()
+    special_characters = False
+    numbers = False
+    ambiguous = False
+    lowercase = False
+    uppercase = False
+    min_numbers = 0
+    min_symbols = 0
+    length = 0
+
     for name in message.split(" "):
         if name == "-sc":
-            p.special_characters = True
+            special_characters = True
         elif name == "-n":
-            p.numbers = True
+            numbers = True
         # Avoid ambiguous chars if this is set to true
         elif name == "-a":
-            p.ambiguous = True
+            ambiguous = True
         elif name == "-u":
-            p.uppercase = True
+            uppercase = True
         elif name == "-l":
-            p.lowercase = True
+            lowercase = True
         elif name.isnumeric():
-            p.length = int(name)
+            length = int(name)
         else:
             pass
-    return p
+    return PasswordSpecifications(length=length, lowercase=lowercase, uppercase=uppercase, numbers=numbers,
+                                  symbols=special_characters, min_numbers=min_numbers, min_symbols=min_symbols,
+                                  ambiguous=ambiguous)
+
 
 class Sms:
 
@@ -41,7 +52,7 @@ class Sms:
     def generate_password_sms(self, message):
         p = parse_message(message)
         #  call your function to generate password pass in p
-        pw_gen = PasswordGenerator()
+        pw_gen = PasswordGenerator(p)
         self.message = pw_gen.generate(p)
         # client = Client(self.account_sid, self.auth)
         # client.messages.create(
