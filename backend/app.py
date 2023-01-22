@@ -22,7 +22,7 @@ def check_password():
     password = data['password']
     strength = get_strength(password)
     time = CrackTime(password, False).show_results()
-    return jsonify({"strength": strength,"time":time})
+    return jsonify({"strength": strength, "time":time})
 
 @app.route("/genPassword", methods=['POST'])
 def generate_password():
@@ -59,7 +59,7 @@ def incoming_sms():
     if "checkPassword" in body:
         body = body.replace("checkPassword", "")
         if "-m" in body:
-            body = body.replace("m", "")
+            body = body.replace("-m", "")
             t.check_password_sms(body, True)
         else:
             t.check_password_sms(body)
@@ -69,6 +69,7 @@ def incoming_sms():
     else:
         t.message("Invalid Command")
     resp.message(t.message)
+    print(resp.to)
     return str(resp)
 
 
