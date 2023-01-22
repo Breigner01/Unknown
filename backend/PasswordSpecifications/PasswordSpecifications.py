@@ -11,3 +11,4 @@ class PasswordSpecifications:
     min_numbers: int
     min_symbols: int
     ambiguous: bool
+

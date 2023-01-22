@@ -5,6 +5,27 @@ from PasswordSpecifications import PasswordSpecifications
 load_dotenv()
 
 
+def parse_message(message):
+    p = PasswordSpecifications()
+    for name in message.split(" "):
+        if name == "-sc":
+            p.special_characters = True
+        elif name == "-n":
+            p.numbers = True
+        # Avoid ambiguous chars if this is set to true
+        elif name == "-a":
+            p.ambiguous = True
+        elif name == "-u":
+            p.uppercase = True
+        elif name == "-l":
+            p.lowercase = True
+        elif name.isnumeric():
+            p.length = int(name)
+        else:
+            pass
+    return p
+
+
 class Sms:
 
     def __init__(self):
@@ -16,7 +37,7 @@ class Sms:
         print("Twilio Initialized")
 
     def generate_password_sms(self, message):
-        p = self.parse_message(message)
+        p = parse_message(message)
         #  call your function to generate password pass in p
         self.message = "BEN function"
         # client = Client(self.account_sid, self.auth)
@@ -25,26 +46,6 @@ class Sms:
         #     from_=os.getenv("from_number"),
         #     body=message
         # )
-
-    def parse_message(message):
-        p = PasswordSpecifications()
-        for name in message.split(" "):
-            if name == "-sc":
-                p.special_characters = True
-            elif name == "-n":
-                p.numbers = True
-            # Avoid ambiguous chars if this is set to true
-            elif name == "-a":
-                p.ambiguous = True
-            elif name == "-u":
-                p.uppercase = True
-            elif name == "-l":
-                p.lowercase = True
-            elif name.isnumeric():
-                p.length = int(name)
-            else:
-                pass
-        return p
 
     def check_password_sms(self, message):
         pass

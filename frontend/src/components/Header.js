@@ -5,7 +5,7 @@ const Header = () => {
 
     return(
         <Wrapper>
-            <Name>UHN-NOWN !Pa55w0rd Cracker</Name>
+            <Name>UHN-NOWN !Pa55w0rd Checker</Name>
             <Links>
                 <Link to="/">Generate Password</Link>
                 <Link to="/checkPassword">Check Password</Link>
@@ -20,7 +20,7 @@ const Wrapper = styled.div `
 color:	#a4f644;
 position:sticky;
 top:0;
-background-color:#414767;
+background-color:#121212;
 z-index:1000;
 font-family: 'Share Tech Mono', monospace;
 margin:10px;
@@ -43,12 +43,12 @@ text-decoration: none;
 transition: all 0.2s;
 margin:5%;
 &.active {
-background-color: #777;
+background-color: #181818;
 height:80px;
 border-radius: 10px;
 }
 &:hover {
-    background-color: #777;
+    background-color: #181818;
     height:80px;
     border-radius: 10px;
 }
