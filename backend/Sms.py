@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from twilio.rest import Client
 from PasswordSpecifications import PasswordSpecifications
 from CrackTime import CrackTime
+from PasswordGeneration.PasswordGenerator import PasswordGenerator
 load_dotenv()
 
 
@@ -40,7 +41,8 @@ class Sms:
     def generate_password_sms(self, message):
         p = parse_message(message)
         #  call your function to generate password pass in p
-        self.message = "BEN function"
+        pw_gen = PasswordGenerator()
+        self.message = pw_gen.generate(p)
         # client = Client(self.account_sid, self.auth)
         # client.messages.create(
         #     to=number,
