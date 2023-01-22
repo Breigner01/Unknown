@@ -14,7 +14,7 @@ class CrackTime:
     allowed_characters = 62
     sample_space = None
 
-    def __init__(self, password):
+    def __init__(self, password, allowed_characters=95, attempts_per_second=100000, max_length=150):
         self.password = password
         self.sample_space = self.allowed_characters ** len(self.password)
         print("Sample space = ", self.sample_space)
