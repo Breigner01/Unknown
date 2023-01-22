@@ -55,8 +55,8 @@ def test():
 def incoming_sms():
     t = Sms_api.Sms()
     body = request.values.get('Body', None)
-    resp = MessagingResponse()
     print("hello")
+    resp = MessagingResponse()
     if "checkPassword" in body:
         body = body.replace("checkPassword", "")
         if "-m" in body:
