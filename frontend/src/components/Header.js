@@ -9,6 +9,7 @@ const Header = () => {
             <Links>
                 <Link to="/">Generate Password</Link>
                 <Link to="/checkPassword">Check Password</Link>
+                <Link to="/info">Info</Link>
             </Links>
         </Wrapper>
     )
@@ -23,13 +24,11 @@ top:0;
 background-color:#121212;
 z-index:1000;
 font-family: 'Share Tech Mono', monospace;
-margin:10px;
 width:100%;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
-box-shadow: 2px 9px 5px lightgrey;
 border-radius:15px;
 padding:10px;
 `
