@@ -31,32 +31,31 @@ const Homepage = () => {
     }
 
      const handleSubmit = (event) => {
-         event.preventDefault()
-         const data = {
-             value: value,
-             uppercase: uppercase,
-             lowercase: lowercase,
-             numbers: numbers,
-             specialChars: specialChars,
-             ambiguousChars: ambiguousChars
-         }
-         console.log(data)
-         fetch("http://localhost:5000/genPassword", {mode: 'cors', body: JSON.stringify(data), method: "POST"})
-             .then((res) => {
-                 res.json().then((data) => {
-                     setPassword(data);
-                     console.log(data.password);
-                     console.log(data.time);
-                     console.log(data.strength)
-                 })
-             })
+        event.preventDefault()
+        const data = {
+            value: value,
+            uppercase: uppercase,
+            lowercase: lowercase,
+            numbers: numbers,
+            specialChars: specialChars,
+            ambiguousChars: ambiguousChars
+        }
+        console.log(data)
+        fetch("http://localhost:5000/genPassword", {mode: 'cors', body: JSON.stringify(data), method: "POST"})
+            .then((res) => {
+                res.json().then((data) => {
+                    setPassword(data);
+                    console.log(data.password);
+                    console.log(data.time);
+                    console.log(data.strength)
+                })
+            })
 
-             .catch(function (error) {
-                     console.log(error);
-                 }
-             )
+        .catch(function (error) {
+            console.log(error);}
+        )
 
-     }
+}
     return (
         <>
         <Wrapper>
@@ -131,7 +130,7 @@ const Homepage = () => {
             Ambiguous
         </label>
         <label>
-            <button type="submit" value="Submit" onClick={handleSubmit}>Generate Password</button>
+            <Button type="submit" value="Submit" onClick={handleSubmit}>Generate Password</Button>
         </label>
         </form>
         </CheckBoxes>
