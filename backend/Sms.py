@@ -52,7 +52,7 @@ class Sms:
     def generate_password_sms(self, message):
         p = parse_message(message)
         #  call your function to generate password pass in p
-        pw_gen = PasswordGenerator(p)
+        pw_gen = PasswordGenerator()
         self.message = pw_gen.generate(p)
         # client = Client(self.account_sid, self.auth)
         # client.messages.create(
