@@ -58,12 +58,12 @@ def incoming_sms():
     body = request.values.get('Body', None)
     resp = MessagingResponse()
     if "checkPassword" in body:
-        body = body.replace("checkPassword", "")
+        body = body.replace("checkPassword ", "")
         if "-m" in body:
-            body = body.replace("-m", "")
-            t.check_password_sms(body, True)
+            body = body.replace("-m ", "")
+            t.message = t.check_password_sms(body, True)
         else:
-            t.check_password_sms(body)
+            t.message = t.check_password_sms(body)
     elif "generatePassword" in body:
         body = body.replace("generatePassword", "")
         t.generate_password_sms(body)
