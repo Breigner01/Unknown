@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from twilio.rest import Client
-from PasswordSpecifications import PasswordSpecifications
+from PasswordSpecifications.PasswordSpecifications import PasswordSpecifications
 from CrackTime import CrackTime
 from PasswordGeneration.PasswordGenerator import PasswordGenerator
 

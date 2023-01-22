@@ -20,8 +20,8 @@ def home():
 def check_password():
     data = json.loads(request.data)
     password = data['password']
-    strength = get_strength(password)
     time = CrackTime(password, False).show_results()
+    strength = get_strength(time)
     return jsonify({"strength": strength, "time":time})
 
 @app.route("/genPassword", methods=['POST'])
@@ -65,8 +65,8 @@ def incoming_sms():
         else:
             t.message = t.check_password_sms(body)
     elif "generatePassword" in body:
-        body = body.replace("generatePassword", "")
-        t.generate_password_sms(body)
+        body = body.replace("generatePassword ", "")
+        t.message = t.generate_password_sms(body)
     else:
         t.message = "Invalid Command"
     resp.message(t.message)
