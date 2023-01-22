@@ -20,8 +20,8 @@ def home():
 def check_password():
     data = json.loads(request.data)
     password = data['password']
-    strength = get_strength(password)
     time = CrackTime(password, False).show_results()
+    strength = get_strength(time)
     return jsonify({"strength": strength, "time":time})
 
 @app.route("/genPassword", methods=['POST'])
