@@ -63,3 +63,17 @@ class CrackTime:
             if "years" in time:
                 return self.with_moores(self.generate_time() / SECONDSINYEAR)
         return time
+
+def get_strength(result):
+    if result == "instant":
+        return "horrible"
+    if result.contains("seconds"):
+        return "bad"
+    if result.contains("hours") or result.contains("days") or result.contains("months"):
+        return "weak"
+    if result.contains("years"):
+        year = int(result.replace(" years", ""))
+        if year < 2000:
+            return "mediocre"
+        else:
+            return "strong"
