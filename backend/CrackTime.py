@@ -11,8 +11,8 @@ SECONDSINYEAR = SECONDSINDAY * 365  # 31536000
 class CrackTime:
     password = None
     attempts_per_second = 37085000000  # Follows RTX2080  http://ww16.hivesystem.io/blog/are-your-passwords-in-the-green?sub1=20230122-1210-36bf-8f71-49af03a1c99a
-    # allowed_characters = 88  # 26 lower, 26 upper, 10 digit, 26 special
-    allowed_characters = 62
+    allowed_characters = 88  # 26 lower, 26 upper, 10 digit, 26 special
+    # allowed_characters = 62 # 26 lower, 26 upper, 10 digit
     sample_space = None
     use_moores = False
 
