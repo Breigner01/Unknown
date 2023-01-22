@@ -68,7 +68,7 @@ def incoming_sms():
         body = body.replace("generatePassword", "")
         t.generate_password_sms(body)
     else:
-        t.message("Invalid Command")
+        t.message = "Invalid Command"
     resp.message(t.message)
     print("goodbye")
     app.logger.info(resp.message)
