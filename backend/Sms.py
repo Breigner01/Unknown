@@ -50,6 +50,6 @@ class Sms:
         #     body=message
         # )
 
-    def check_password_sms(self, message, use_moores):
+    def check_password_sms(self, message, use_moores=False):
         pw = CrackTime(message, use_moores)
         return pw.show_results()
