@@ -1,0 +1,9 @@
+### Python related stuff
+
+venv*/
+__pycache__/
+
+### IDE related stuff
+
+.idea/
+.vscode/
