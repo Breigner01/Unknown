@@ -26,7 +26,10 @@ class CrackTime:
 
     def without_moores(self):
         if self.generate_time() / SECONDSINYEAR > 1:
-            return str(math.floor(self.generate_time() / SECONDSINYEAR)) + " years"
+            if (math.floor(self.generate_time() / SECONDSINYEAR)) >2000:
+                return f"2000+ years"
+            else:
+                return str(math.floor(self.generate_time() / SECONDSINYEAR)) + " years"
         elif self.generate_time() / SECONDSINMONTH > 1:
             return str(math.floor(self.generate_time() / SECONDSINMONTH)) + " months"
         elif self.generate_time() / SECONDSINWEEK > 1:
@@ -74,7 +77,7 @@ def get_strength(result):
     if "hours" in result or "days" in result or "months" in result:
         return "weak"
     if "years" in result:
-        year = int(result.replace(" years", ""))
+        year = int(result.replace("+ years", ""))
         if year < 2000:
             return "mediocre"
         else:
