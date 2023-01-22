@@ -16,7 +16,7 @@ class CrackTime:
     sample_space = None
     use_moores = False
 
-    def __init__(self, password, use_moores):
+    def __init__(self, password, use_moores=False):
         self.password = password
         self.sample_space = self.allowed_characters ** len(self.password)
         self.use_moores = use_moores
