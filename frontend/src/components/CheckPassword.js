@@ -9,7 +9,7 @@ const handleSubmit = (event) => {
         password: password,
     }
 
-        fetch(`http://localhost:5000/checkPassword`, {mode: 'cors', body: JSON.stringify(data), method: "POST"})
+        fetch('${process.env.REACT_APP_BACKEND_URL}/checkPassword', {mode: 'cors', body: JSON.stringify(data), method: "POST"})
             .then((res) => {
                 res.json().then((data) => {
                     setPasswordData(data);
